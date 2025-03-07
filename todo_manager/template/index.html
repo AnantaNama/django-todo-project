@@ -1,21 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TODO App Index</title>
-</head>
+{% block title %}
+    TODO App Index
+{% endblock title %}
 
-<body>
-
-    <h1> Welcome our TODO App</h1>
+{% block body %}
+    <h1>Wellcome to our TODO App!</H1>
     <h2>Work in progress</h2>
-    <h3>It is {% now "jS F Y" %}</h3>
+    <h3>{% now "jS F Y" %}</h3>
     
-    
-    
-
-</body>
-
-</html>
+{% endblock body %} 
