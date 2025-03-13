@@ -3,7 +3,10 @@ from pipes import Template
 from typing import Any
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView, DetailView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import TemplateView, ListView, DetailView, CreateView
+
+from .forms import ToDoItemForm
 from .models import ToDoItem
 
 
@@ -30,3 +33,15 @@ class ToDoListDoneView(ListView):
 
 class ToDoDetailView(DetailView):
     model = ToDoItem 
+
+class ToDoItemCreateView(CreateView):
+    model = ToDoItem
+    form_class = ToDoItemForm
+    # fields = ("title", "description")
+
+    def get_success_url(self):
+         return reverse(
+             "todo_list:detail",
+             kwargs={"pk": self.object.pk}, # type: ignore
+         )
+    
